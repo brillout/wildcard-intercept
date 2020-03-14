@@ -2,11 +2,14 @@
   "name": "@brillout/wildcard-intercept",
   "version": "0.1.0",
   "main": "index.js",
-  "scripts": {
-    "docs": "mdocs"
-  },
   "peerDependencies": {
     "@wildcard-api/server": "^0.2.10"
+  },
+  "dependencies": {
+    "@brillout/assert": "^0.1.1"
+  },
+  "scripts": {
+    "docs": "mdocs"
   },
   "devDependencies": {
     "@brillout/mdocs": "^0.1.30",
@@ -14,7 +17,7 @@
     "@wildcard-api/server": "^0.2.10",
     "express": "^4.17.1"
   },
-  "dependencies": {
-    "@brillout/assert": "^0.1.1"
+  "publishConfig": {
+    "access": "public"
   }
 }
