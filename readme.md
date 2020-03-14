@@ -80,12 +80,10 @@
 Library for [Wildcard API](https://github.com/reframejs/wildcard-api) to intercept calls.
 
 ~~~js
-// ./example/server.js
+// ./example/endpoints.js
 
-const express = require('express');
-const wildcardMiddleware = require('@wildcard-api/server/express');
 const {endpoints} = require('@wildcard-api/server');
-const intercept = require('../');
+const intercept = require('@brillout/wildcard-intercept'); // npm install @brillout/wildcard-intercept
 
 endpoints.hello = intercept(function(name) {
   return 'Hi '+name+'!';
@@ -95,22 +93,14 @@ endpoints.mirror = intercept(function(msg) {
   return msg.split('').reverse().join('');
 }, myListener);
 
-const app = express();
-
-app.use(wildcardMiddleware(getContext));
-app.listen(3000);
-
 function myListener({endpointName, endpointArgs, endpointResult, endpointError, context}) {
   console.log({endpointName, endpointArgs, endpointResult, endpointError, context});
-}
-
-function getContext(req) {
-  const {headers} = req;
-  return {headers};
 }
 ~~~
 ~~~js
 // ./example/client.js
+
+// Client
 
 const {endpoints} = require('@wildcard-api/client');
 const wildcard = require('@wildcard-api/client');
@@ -118,13 +108,19 @@ const wildcard = require('@wildcard-api/client');
 wildcard.serverUrl = 'http://localhost:3000';
 
 (async function() {
-  const greetings = await endpoints.hello('Johnson');
-  console.log(greetings);
-  console.log(await endpoints.mirror(greetings));
+  let greeting = await endpoints.hello('Johnson');
+  console.log(greeting);
+  greeting = await endpoints.mirror(greeting);
+  console.log(greeting);
 })();
 ~~~
-`console.log` result:
+Client `console.log` result:
 ~~~shell
+Hi Johnson!
+!nosnhoJ iH
+~~~
+Server `console.log` result:
+~~~js
 {
   endpointName: 'hello',
   endpointArgs: [ 'Johnson' ],
@@ -142,7 +138,6 @@ wildcard.serverUrl = 'http://localhost:3000';
     }
   }
 }
-Hi Johnson!
 {
   endpointName: 'mirror',
   endpointArgs: [ 'Hi Johnson!' ],
@@ -160,7 +155,6 @@ Hi Johnson!
     }
   }
 }
-!nosnhoJ iH
 ~~~
 
 The [source code of `@brillout/wildcard-intercept`](/index.js) is only 42 LOC; you may want to implement your own interceptor!

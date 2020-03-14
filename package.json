@@ -1,6 +1,6 @@
 {
-  "name": "@brillout/wildcard-interceptor",
-  "version": "0.0.1",
+  "name": "@brillout/wildcard-intercept",
+  "version": "0.1.0",
   "main": "index.js",
   "scripts": {
     "docs": "mdocs"

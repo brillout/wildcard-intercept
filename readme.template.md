@@ -3,13 +3,18 @@
 Library for [Wildcard API](https://github.com/reframejs/wildcard-api) to intercept calls.
 
 ~~~js
-!INLINE ./example/server.js
+!INLINE ./example/endpoints.js
 ~~~
 ~~~js
 !INLINE ./example/client.js
 ~~~
-`console.log` result:
+Client `console.log` result:
 ~~~shell
+Hi Johnson!
+!nosnhoJ iH
+~~~
+Server `console.log` result:
+~~~js
 {
   endpointName: 'hello',
   endpointArgs: [ 'Johnson' ],
@@ -27,7 +32,6 @@ Library for [Wildcard API](https://github.com/reframejs/wildcard-api) to interce
     }
   }
 }
-Hi Johnson!
 {
   endpointName: 'mirror',
   endpointArgs: [ 'Hi Johnson!' ],
@@ -45,7 +49,6 @@ Hi Johnson!
     }
   }
 }
-!nosnhoJ iH
 ~~~
 
 The [source code of `@brillout/wildcard-intercept`](/index.js) is only 42 LOC; you may want to implement your own interceptor!
