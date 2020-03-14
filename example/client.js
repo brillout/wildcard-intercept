@@ -1,5 +1,3 @@
-// Client
-
 const {endpoints} = require('@wildcard-api/client');
 const wildcard = require('@wildcard-api/client');
 

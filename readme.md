@@ -100,8 +100,6 @@ function myListener({endpointName, endpointArgs, endpointResult, endpointError, 
 ~~~js
 // ./example/client.js
 
-// Client
-
 const {endpoints} = require('@wildcard-api/client');
 const wildcard = require('@wildcard-api/client');
 
